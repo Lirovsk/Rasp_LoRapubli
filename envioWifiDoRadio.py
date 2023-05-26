@@ -1,5 +1,5 @@
 import socket
-
+import serial
 # Endereço IP local do Raspberry Pi
 HOST = '192.168.1.100'  # Substitua pelo IP do Raspberry Pi
 
