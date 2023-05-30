@@ -19,7 +19,7 @@ def receive_message():
 
         if data!="":
             # Converter os bytes lidos em uma string
-            message = ''.join([chr(byte) for byte in data])
+            message = ''.join([chr(byte) for byte in data if byte!=0])
         # message=str(data.decode('ascii'))
         # Retornar a mensagem recebida
         return message
