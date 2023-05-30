@@ -17,8 +17,8 @@ def receive_message():
         data = spi.readbytes(32)
     
     # Converter os bytes lidos em uma string
-   # message = ''.join([chr(byte) for byte in data])
-    message=str(data.decode('ascii'))
+    message = ''.join([chr(b) for b in data])
+    #    # message=str(data.decode('ascii'))
     # Retornar a mensagem recebida
     return message
 
