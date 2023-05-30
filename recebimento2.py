@@ -1,21 +1,28 @@
 import spidev
 
+# Definir os pinos
+PIN_MOSI = 10
+PIN_MISO = 9
+PIN_SCLK = 11
+PIN_CS = 8
+
 # Inicializar a comunicação SPI
 spi = spidev.SpiDev()
 spi.open(0, 0)  # (bus, device)
 spi.max_speed_hz = 500000  # Definir a velocidade de comunicação SPI (500 kHz)
 
+# Configurar os pinos GPIO
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIN_CS, GPIO.OUT)
+GPIO.output(PIN_CS, GPIO.HIGH)
+
 # Função para receber mensagens do dispositivo LoRa
 def receive_message():
-    # Configurar o pino Chip Select como LOW para selecionar o dispositivo LoRa
-    spi.xfer([0x80])
+    # Selecionar o dispositivo LoRa
+    GPIO.output(PIN_CS, GPIO.LOW)
     
-    # Esperar até que o dispositivo LoRa esteja pronto para enviar os dados
-    while spi.xfer([0x00])[0] & 0x80 == 0:
-        print("esperando dados")
-        pass
     # Enviar comandos para receber dados do dispositivo LoRa
-    print("recebendo mensagem")
     spi.xfer([0x00])
     spi.xfer([0x00])
     
@@ -25,8 +32,8 @@ def receive_message():
     # Converter os bytes lidos em uma string
     message = ''.join([chr(byte) for byte in data if byte != 0])
     
-    # Configurar o pino Chip Select como HIGH para deselecionar o dispositivo LoRa
-    spi.xfer([0x81])
+    # Deselecionar o dispositivo LoRa
+    GPIO.output(PIN_CS, GPIO.HIGH)
     
     # Retornar a mensagem recebida
     return message
