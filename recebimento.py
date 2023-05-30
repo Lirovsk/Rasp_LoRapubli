@@ -11,13 +11,13 @@ spi.max_speed_hz = 500000  # Definir a velocidade de comunicação SPI (500 kHz)
 def receive_message():
     # Enviar comando para receber dados
     spi.xfer2([0x00])
-    data=0
+    data=[]
     while data==0:
     # Ler até 32 bytes de dados do dispositivo LoRa
         data = spi.readbytes(32)
     
     # Converter os bytes lidos em uma string
-    message = ''.join([chr(b) for b in data])
+    message = ''.join([chr(byte) for byte in data])
     #    # message=str(data.decode('ascii'))
     # Retornar a mensagem recebida
     return message
