@@ -25,7 +25,5 @@ def receive_message():
 # Exemplo de uso: receber uma mensagem e exibir na tela
 print("esperando pela mensagem")
 received_message = receive_message()
-print("esperando pela mensagem")
-print("")
 print(received_message)
 print("mensagem recebida")
