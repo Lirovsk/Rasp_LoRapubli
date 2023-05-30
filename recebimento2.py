@@ -12,9 +12,10 @@ def receive_message():
     
     # Esperar até que o dispositivo LoRa esteja pronto para enviar os dados
     while spi.xfer([0x00])[0] & 0x80 == 0:
+        print("esperando dados")
         pass
-    
     # Enviar comandos para receber dados do dispositivo LoRa
+    print("recebendo mensagem")
     spi.xfer([0x00])
     spi.xfer([0x00])
     
