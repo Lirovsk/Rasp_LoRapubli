@@ -23,5 +23,6 @@ def receive_message():
     return message
 
 # Exemplo de uso: receber uma mensagem e exibir na tela
+print("esperando pela mensagem")
 received_message = receive_message()
 print("Mensagem recebida:", received_message)
