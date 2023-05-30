@@ -12,7 +12,7 @@ def receive_message():
     while True:
         # Enviar comando para receber dados
         spi.xfer2([0x00])
-        data[32]=""
+        data=""
         
         # Ler até 32 bytes de dados do dispositivo LoRa
         data = spi.readbytes(32)
