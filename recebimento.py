@@ -17,7 +17,7 @@ def receive_message():
         # Ler até 32 bytes de dados do dispositivo LoRa
         data = spi.readbytes(32)
 
-        if data!=0:
+        if data!="":
             # Converter os bytes lidos em uma string
             message = ''.join([chr(byte) for byte in data])
         # message=str(data.decode('ascii'))
