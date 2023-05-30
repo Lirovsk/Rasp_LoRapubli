@@ -18,7 +18,7 @@ def receive_message():
     
     # Converter os bytes lidos em uma string
    # message = ''.join([chr(byte) for byte in data])
-    message=str(message.decode('ascii'))
+    message=str(data.decode('ascii'))
     # Retornar a mensagem recebida
     return message
 
